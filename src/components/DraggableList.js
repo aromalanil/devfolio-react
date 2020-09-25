@@ -32,7 +32,6 @@ function DraggableList({ maxEntry, data, updateList, dataName }) {
   };
 
   const handleDrop = () => {
-    console.log(droppedItem, draggedItem);
     if (droppedItem === null || draggedItem.index === droppedItem.index) {
       return;
     }

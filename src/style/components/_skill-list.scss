@@ -5,8 +5,19 @@
   background-color: #fff;
   border-radius: 0.5rem;
   box-shadow: rgba(0, 0, 0, 0.08) 0px 1px 4px 0px;
-
+  margin-bottom: 2rem;
   p{
     opacity: .8;
+  }
+}
+
+@media screen and (max-width:900px){
+  .skill-list{
+    height:100%;
+  }
+}
+@media screen and (max-width:600px){
+  .skill-list{
+    width:90vw;
   }
 }

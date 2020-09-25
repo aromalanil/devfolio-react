@@ -11,6 +11,7 @@ function ListItem({
   handleDrop,
 }) {
   const [dragged, setDragged] = useState(false);
+  const [draggedOver, setDraggedOver] = useState(false);
 
   const handleDragStart = (e) => {
     setDraggedItem({ key: id, index: index });
@@ -28,11 +29,15 @@ function ListItem({
 
   return (
     <div
-      className={`list-item ${dragged ? "dragged" : ""}`}
+      className={`list-item ${dragged ? "dragged" : ""} ${
+        draggedOver ? "dragged-over" : ""
+      }`}
       draggable={true}
       onDragStart={handleDragStart}
       onDragEnter={handleDragEnter}
-      onDragEnd={handleDragEnd}>
+      onDragEnd={handleDragEnd}
+      onDragLeave={() => setDraggedOver(false)}
+      onDragOver={() => setDraggedOver(true)}>
       <div className="data">
         <p>
           {index + 1}. {name}

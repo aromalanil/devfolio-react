@@ -24,7 +24,7 @@
     align-items: center;
     justify-content: space-between;
     background-color: var(--green);
-
+    transition: .3s ease;
     .delete-btn {
       background-color: transparent;
       display: flex;
@@ -37,6 +37,10 @@
 
   .dragged {
     opacity: 1;
+  }
+
+  .dragged-over {
+    filter: brightness(.8);
   }
 
   .input-wrapper {
@@ -74,7 +78,7 @@
     background-color: white;
     color: var(--black);
     position: absolute;
-    top:0;
+    top: 0;
     border-bottom-left-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
     border: 0.1rem solid var(--dark-grey);
@@ -94,6 +98,20 @@
     background-color: var(--grey);
     p {
       opacity: 0.8;
+    }
+  }
+  @media screen and (max-width: 900px) {
+    .list-item,
+    .list-placeholder,
+    .input-wrapper {
+      width: 80%;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .list-item,
+    .list-placeholder,
+    .input-wrapper {
+      width: 90%;
     }
   }
 }
