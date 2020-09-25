@@ -1,0 +1,45 @@
+.draggable-list {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+
+  .list-item,
+  .list-input,
+  .list-placeholder {
+    margin: 0.5rem auto;
+    padding: 0.5rem 0.8rem;
+    width: 49%;
+    border-radius: 0.2rem;
+  }
+
+  .list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--green);
+
+    .delete-btn {
+      background-color: transparent;
+      display: flex;
+      align-items: center;
+      img {
+        height: 1.2rem;
+      }
+    }
+  }
+
+  .list-input {
+    cursor: pointer;
+    background-color: var(--green);
+    opacity: 0.4;
+  }
+
+  .list-placeholder {
+    background-color: var(--grey);
+    p {
+      opacity: 0.8;
+    }
+  }
+}
