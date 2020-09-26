@@ -36,7 +36,7 @@
   }
 
   .dragged {
-    opacity: 1;
+    opacity: 0;
   }
 
   .dragged-over {
@@ -78,7 +78,7 @@
     background-color: white;
     color: var(--black);
     position: absolute;
-    top: 0;
+    top:2.4rem;
     border-bottom-left-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
     border: 0.1rem solid var(--dark-grey);

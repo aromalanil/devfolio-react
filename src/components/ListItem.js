@@ -32,7 +32,7 @@ function ListItem({
       className={`list-item ${dragged ? "dragged" : ""} ${
         draggedOver ? "dragged-over" : ""
       }`}
-      draggable={true}
+      draggable
       onDragStart={handleDragStart}
       onDragEnter={handleDragEnter}
       onDragEnd={handleDragEnd}

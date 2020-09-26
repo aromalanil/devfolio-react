@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 
-function ListInput({ position, name, addItem }) {
+function ListInput({ data, position, name, addItem }) {
   const suggestionLimit = 5;
   const inputRef = useRef(null);
   const [suggestionList, setSuggestionList] = useState([]);
@@ -12,8 +12,8 @@ function ListInput({ position, name, addItem }) {
     const focusListener = () => {
       setFocus(true);
     };
-    const blurListener =  () => {
-     setTimeout(() => setFocus(false), 300);
+    const blurListener = () => {
+      setTimeout(() => setFocus(false), 300);
     };
     input.addEventListener("focus", focusListener);
     input.addEventListener("blur", blurListener);
@@ -28,12 +28,11 @@ function ListInput({ position, name, addItem }) {
     let url = `https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&inname=${newValue}&site=stackoverflow`;
 
     let response = await fetch(url);
-
     if (response.ok) {
       let json = await response.json();
       let data = json.items;
       let suggestions = [];
-      for (let i = 0; i < suggestionLimit; i++) {
+      for (let i = 0; i < data.length && i < suggestionLimit; i++) {
         suggestions.push(data[i].name);
       }
       setSuggestionList(suggestions);
@@ -43,12 +42,20 @@ function ListInput({ position, name, addItem }) {
   };
 
   const handleSuggestionSelect = (suggestion) => {
-    console.log("Clicked");
-    addItem({
-      key: position,
-      position: position,
-      name: suggestion,
-    });
+    let doesSuggestionExist = false;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].name === suggestion) {
+        doesSuggestionExist = true;
+        break;
+      }
+    }
+    if (!doesSuggestionExist) {
+      addItem({
+        key: suggestion,
+        position: position,
+        name: suggestion,
+      });
+    }
     setSuggestionList([]);
     setValue("");
   };

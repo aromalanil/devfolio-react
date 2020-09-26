@@ -82,6 +82,7 @@ function DraggableList({ maxEntry, data, updateList, dataName }) {
     <div className="draggable-list">
       {generateList(data)}
       <ListInput
+        data={data}
         position={dataLength + 1}
         name={dataName}
         addItem={handleAddItem}
