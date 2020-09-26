@@ -4,13 +4,15 @@ import firebase from "../utils/firebase";
 
 function SkillList() {
   const isFirstRun = useRef(true);
-  const [skillList, setSkillList] = useState([ ]);
+  const [skillList, setSkillList] = useState([]);
 
   useEffect(() => {
     const skillRef = firebase.database().ref("/");
     skillRef.on("value", (snapshot) => {
       isFirstRun.current = false;
-      setSkillList(snapshot.val());
+      let data = snapshot.val();
+      data = data === null ? [] : data;
+      setSkillList(data);
     });
   }, []);
 
