@@ -25,7 +25,7 @@ function DraggableList({ maxEntry, data, updateList, dataName }) {
     updateList(newList);
   };
 
-  const handleAddItem = (item) => {
+  const addItem = (item) => {
     const newList = [...data];
     newList.push(item);
     updateList(newList);
@@ -85,7 +85,7 @@ function DraggableList({ maxEntry, data, updateList, dataName }) {
         data={data}
         priority={dataLength + 1}
         name={dataName}
-        addItem={handleAddItem}
+        addItem={addItem}
       />
       {generatePlaceholder(dataLength + 2, maxEntry - dataLength - 1, dataName)}
     </div>

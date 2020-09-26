@@ -1,0 +1,49 @@
+.input-wrapper {
+  position: relative;
+  .hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.list-input {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  border: 0;
+  font-size: 1rem;
+  cursor: pointer;
+  background-color: var(--green);
+  opacity: 0.4;
+  &:focus {
+    opacity: 1;
+    outline: none;
+    box-shadow: 0 0 0 0.12rem var(--blue);
+    background-color: white;
+    &::placeholder {
+      opacity: 0;
+    }
+  }
+}
+
+.input-suggestions {
+  width: 100%;
+  z-index: 1;
+  background-color: white;
+  color: var(--black);
+  position: absolute;
+  top: 2.4rem;
+  border-bottom-left-radius: 0.2rem;
+  border-bottom-right-radius: 0.2rem;
+  border: 0.1rem solid var(--dark-grey);
+  border-top: 0;
+  .suggestion-item {
+    cursor: pointer;
+    padding: 0.5rem 0.8rem;
+    display: block;
+    &:hover {
+      background-color: var(--transparent-blue);
+      opacity: 0.9;
+    }
+  }
+}

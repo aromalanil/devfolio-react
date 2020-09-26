@@ -1,0 +1,21 @@
+.list-item {
+  cursor: move;
+  @include flex-row(center, space-between);
+  background-color: var(--green);
+  transition: 0.3s ease;
+  .delete-btn {
+    background-color: transparent;
+    @include flex-row(center, flex-start);
+    img {
+      height: 1.2rem;
+    }
+  }
+}
+
+.dragged {
+  opacity: 0;
+}
+
+.dragged-over {
+  filter: brightness(0.8);
+}

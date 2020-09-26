@@ -1,7 +1,6 @@
 .draggable-list {
   margin-top: 1rem;
-  display: flex;
-  flex-direction: column;
+  @include flex-column(center,flex-start);
   flex-wrap: wrap;
   height: 100%;
 
@@ -19,95 +18,14 @@
     border-radius: 0.2rem;
   }
 
-  .list-item {
-    cursor: move;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: var(--green);
-    transition: 0.3s ease;
-    .delete-btn {
-      background-color: transparent;
-      display: flex;
-      align-items: center;
-      img {
-        height: 1.2rem;
-      }
-    }
-  }
-
-  .dragged {
-    opacity: 0;
-  }
-
-  .dragged-over {
-    filter: brightness(0.8);
-  }
-
-  .input-wrapper {
-    position: relative;
-    .hide {
-      opacity: 0;
-      pointer-events: none;
-    }
-  }
-
-  .list-input {
-    position: relative;
-    z-index: 2;
-    width: 100%;
-    border: 0;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: var(--green);
-    opacity: 0.4;
-    &:focus {
-      opacity: 1;
-      outline: none;
-      box-shadow: 0 0 0 0.12rem var(--blue);
-      background-color: white;
-      &::placeholder {
-        opacity: 0;
-      }
-    }
-  }
-
-  .input-suggestions {
-    width: 100%;
-    z-index: 1;
-    background-color: white;
-    color: var(--black);
-    position: absolute;
-    top: 2.4rem;
-    border-bottom-left-radius: 0.2rem;
-    border-bottom-right-radius: 0.2rem;
-    border: 0.1rem solid var(--dark-grey);
-    border-top: 0;
-    .suggestion-item {
-      cursor: pointer;
-      padding: 0.5rem 0.8rem;
-      display: block;
-      &:hover {
-        background-color: var(--transparent-blue);
-        opacity: 0.9;
-      }
-    }
-  }
-
-  .list-placeholder {
-    background-color: var(--grey);
-    p {
-      opacity: 0.8;
-    }
-  }
-  @media screen and (max-width: 900px) {
+  @include mq(900px) {
     .list-item,
     .list-placeholder,
     .input-wrapper {
       width: 80%;
     }
   }
-  @media screen and (max-width: 600px) {
+  @include mq(600px) {
     .list-item,
     .list-placeholder,
     .input-wrapper {

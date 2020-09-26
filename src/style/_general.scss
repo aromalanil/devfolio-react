@@ -22,7 +22,7 @@ h2 {
 }
 
 body {
-  background-color: #f4f5f6;
+  background-color: #eceaea;
   width: 100%;
   height: 100%;
 }
@@ -30,9 +30,7 @@ body {
 #root {
   width: 100%;
   min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-row(center, center);
 }
 
 .title {
