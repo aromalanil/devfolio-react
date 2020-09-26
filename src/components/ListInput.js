@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import debounce  from "../utils/debounce";
 
 function ListInput({ data, position, name, addItem }) {
   const suggestionLimit = 5;
@@ -22,11 +23,7 @@ function ListInput({ data, position, name, addItem }) {
     };
   }, []);
 
-  const handleInputChange = async (e) => {
-    let newValue = e.target.value;
-    setValue(newValue);
-    let url = `https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&inname=${newValue}&site=stackoverflow`;
-
+  const searchSuggestions = async (url) => {
     let response = await fetch(url);
     if (response.ok) {
       let json = await response.json();
@@ -39,6 +36,16 @@ function ListInput({ data, position, name, addItem }) {
     } else {
       alert("Error fetching data from StackExchange API");
     }
+  };
+
+  const debouncedSearch = React.useCallback(debounce(searchSuggestions, 400), []);
+
+  const handleInputChange = (e) => {
+    let newValue = e.target.value;
+    setValue(newValue);
+    let url = `https://api.stackexchange.com/2.2/tags?order=desc&sort=popular&inname=${newValue}&site=stackoverflow`;
+
+    debouncedSearch(url);
   };
 
   const handleSuggestionSelect = (suggestion) => {
