@@ -1,13 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import DraggableList from "./DraggableList";
+import firebase from "../utils/firebase";
 
 function SkillList() {
-  const [skillList, setSkillList] = useState([
-    // { key: 1, position: 1, name: "React" },
-    // { key: 2, position: 2, name: "Angular" },
-    // { key: 3, position: 3, name: "View" },
-    // { key: 4, position: 4, name: "Javascript" },
-  ]);
+  const isFirstRun = useRef(true);
+  const [skillList, setSkillList] = useState([ ]);
+
+  useEffect(() => {
+    const skillRef = firebase.database().ref("/");
+    skillRef.on("value", (snapshot) => {
+      isFirstRun.current = false;
+      setSkillList(snapshot.val());
+    });
+  }, []);
+
+  useEffect(() => {
+    if (!isFirstRun.current) {
+      firebase.database().ref("/").set(skillList);
+    }
+  }, [skillList]);
 
   return (
     <div className="skill-list">

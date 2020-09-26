@@ -19,7 +19,7 @@ function DraggableList({ maxEntry, data, updateList, dataName }) {
   const removeItem = (key) => {
     const newList = data.filter((item) => item.key !== key);
     newList.forEach((item, index) => {
-      item.position = index + 1;
+      item.priority = index + 1;
     });
 
     updateList(newList);
@@ -83,7 +83,7 @@ function DraggableList({ maxEntry, data, updateList, dataName }) {
       {generateList(data)}
       <ListInput
         data={data}
-        position={dataLength + 1}
+        priority={dataLength + 1}
         name={dataName}
         addItem={handleAddItem}
       />

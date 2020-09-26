@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import debounce  from "../utils/debounce";
+import debounce from "../utils/debounce";
 
-function ListInput({ data, position, name, addItem }) {
+function ListInput({ data, priority, name, addItem }) {
   const suggestionLimit = 5;
   const inputRef = useRef(null);
   const [suggestionList, setSuggestionList] = useState([]);
@@ -38,7 +38,10 @@ function ListInput({ data, position, name, addItem }) {
     }
   };
 
-  const debouncedSearch = React.useCallback(debounce(searchSuggestions, 400), []);
+  const debouncedSearch = React.useCallback(
+    debounce(searchSuggestions, 400),
+    []
+  );
 
   const handleInputChange = (e) => {
     let newValue = e.target.value;
@@ -59,7 +62,7 @@ function ListInput({ data, position, name, addItem }) {
     if (!doesSuggestionExist) {
       addItem({
         key: suggestion,
-        position: position,
+        priority: priority,
         name: suggestion,
       });
     }
@@ -85,7 +88,7 @@ function ListInput({ data, position, name, addItem }) {
         onChange={handleInputChange}
         type="text"
         className="list-input"
-        placeholder={`${position} Add ${name}`}
+        placeholder={`${priority} Add ${name}`}
       />
       {suggestionList.length !== 0 && isFocus && (
         <div className={"input-suggestions"}>
